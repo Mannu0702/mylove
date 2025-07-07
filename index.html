@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Love ❤️</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to right, #ffe0ec, #ffe4e1);
+      color: #ff4f81;
+      text-align: center;
+      padding: 40px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .btn {
+      margin: 15px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 1rem;
+      color: #c71585;
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .slideshow-container {
+      margin-top: 30px;
+      position: relative;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .active {
+      display: block;
+    }
+
+    #loveCounter {
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+
+    .heart-burst {
+      font-size: 2rem;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(2); }
+      100% { transform: scale(1); }
+    }
+
+    #surpriseBox {
+      display: none;
+      background: #fff0f5;
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+      font-size: 1.1rem;
+      white-space: pre-wrap;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #yesnoBtns {
+      margin-top: 30px;
+    }
+
+    #noBtn {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hi Love! 💖</h1>
+  <p>This little page is just for you my Love.I love you so much kadaaa❤️</p>
+
+  <button class="btn" onclick="loveExplosion()">How much I love you</button>
+  <button class="btn" onclick="showSurprise()">Click to get a surprise</button>
+
+  <div id="loveCounter">❤️ Love Points: <span id="counter">0</span></div>
+  <div id="burstHearts"></div>
+
+  <div id="surpriseBox"></div>
+
+  <div id="yesnoBtns">
+    <p>Do you love me?</p>
+    <button class="btn" onclick="alert('Awww, I love you too!! 💘')">Yes</button>
+    <button class="btn" id="noBtn" onmouseover="runAway()">No</button>
+  </div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <img class="slides active" src="love5.jpg" alt="Photo 1">
+    <img class="slides" src="love4.jpg" alt="Photo 2">
+    <img class="slides" src="love3.jpg" alt="Photo 3">
+    <img class="slides" src="love1.jpg" alt="Photo 3">
+    <img class="slides" src="love2.jpg" alt="Photo 3">
+  </div>
+
+  <footer>
+    Signed with love by: Your Wifey ❤️
+  </footer>
+
+  <script>
+    // Falling hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.innerText = "💖";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+
+    // Slideshow
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slides");
+    setInterval(() => {
+      slides.forEach(slide => slide.classList.remove("active"));
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }, 2500);
+
+    // Love Explosion Button
+    let count = 0;
+    const loveMsgs = [
+      "I love you more than donut!",
+      "You're the peanut to my butter 💑",
+      "Even infinity isn't enough 💞",
+      "I love you more than life 💘",
+      "you are the bestestttt best for me ❤️",
+      "you + me = Always",
+      "you make my heart do labdub!!",
+      "you are my today and all my tomorrows",
+      "with you, everything feels right",
+      "This love counter is gonna break soon! 😍"
+    ];
+
+    function loveExplosion() {
+      count += 1;
+      document.getElementById('counter').innerText = count;
+
+      const burst = document.createElement('div');
+      burst.classList.add('heart-burst');
+      burst.innerText = "💘";
+      document.getElementById("burstHearts").appendChild(burst);
+      setTimeout(() => burst.remove(), 700);
+
+      if (count % 5 === 0) {
+        alert(loveMsgs[(count / 5) % loveMsgs.length]);
+      }
+    }
+
+    // Surprise Message Reveal
+    const surpriseText = `To my favorite person in the whole world,
+
+You're the reason I smile every day.
+Thank you for loving me, making me laugh, and being YOU 💗
+
+Forever yours,
+Your Wifey 💕`;
+
+    function showSurprise() {
+      const box = document.getElementById('surpriseBox');
+      box.style.display = 'block';
+      box.innerText = "";
+      let i = 0;
+
+      function typeText() {
+        if (i < surpriseText.length) {
+          box.innerText += surpriseText.charAt(i);
+          i++;
+          setTimeout(typeText, 40);
+        }
+      }
+
+      typeText();
+    }
+
+    // Runaway No Button
+    function runAway() {
+      const btn = document.getElementById('noBtn');
+      const x = Math.random() * 80;
+      const y = Math.random() * 80;
+      btn.style.position = "absolute";
+      btn.style.left = `${x}%`;
+      btn.style.top = `${y}%`;
+    }
+  </script>
+
+</body>
+</html>
